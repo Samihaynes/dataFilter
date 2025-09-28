@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Invoice Notifier</title>
+<link rel="stylesheet" href="style.css" />
+<!-- SheetJS for Excel parsing (cdn) -->
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+<div class="container">
+<h1>Invoice Notifier</h1>
+<p>Importer un fichier <strong>.xlsx</strong> ou <strong>.csv</strong> contenant au minimum : <em>Client, Email, Invoice, InvoiceDate, Amount</em>.</p>
+
+
+<div class="card">
+<label>Choisir le fichier :</label>
+<input id="fileInput" type="file" accept=".xlsx,.xls,.csv" />
+<div class="row">
+<label>Jours avant relance (par défaut 30)</label>
+<input id="daysLimit" type="number" value="30" min="1" />
+</div>
+<button id="parseBtn">Parcourir et détecter les retards</button>
+</div>
+
+
+<div id="previewArea" class="card hidden">
+<h2>Prévisualisation des retards</h2>
+<div id="stats"></div>
+<table id="resultsTable">
+<thead>
+<tr><th>#</th><th>Client</th><th>Email</th><th>Facture</th><th>Date</th><th>Montant</th><th>Jours</th><th>Exclure</th></tr>
+</thead>
+<tbody></tbody>
+</table>
+<div class="actions">
+<button id="sendBtn">Envoyer les rappels</button>
+<button id="exportBtn">Exporter .xlsx des retards</button>
+</div>
+<div id="feedback" class="feedback"></div>
+</div>
+
+
+<footer>
+<small>Déposé sur un serveur PHP. Utiliser SMTP pour une meilleure délivrabilité.</small>
+</footer>
+</div>
+
+
+<script src="app.js"></script>
+</body>
+</html>
